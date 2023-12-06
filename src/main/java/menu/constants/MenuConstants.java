@@ -14,7 +14,8 @@ public enum MenuConstants {
 
     private static final List<String> ALL_MENUS =
             Stream.of(JAPANESE_FOOD.menus, KOREAN_FOOD.menus, CHINESE_FOOD.menus, ASIAN_FOOD.menus, WESTERN_FOOD.menus)
-                    .flatMap(Collection::stream).toList();
+                    .flatMap(Collection::stream)
+                    .collect(Collectors.toList());
     private static final Map<Integer, MenuConstants> CATEGORY_BY_NUMBER =
             Collections.unmodifiableMap(Stream.of(values())
                     .collect(Collectors.toMap(MenuConstants::categoryNumber, Function.identity())));
@@ -31,6 +32,14 @@ public enum MenuConstants {
 
     public static boolean isExistingMenu(String menuName) {
         return ALL_MENUS.contains(menuName);
+    }
+
+    public static MenuConstants getCategoryByNumber(int categoryNumber) {
+        return MenuConstants.CATEGORY_BY_NUMBER.get(categoryNumber);
+    }
+
+    public List<String> getMenus() {
+        return menus;
     }
 
     private int categoryNumber() {

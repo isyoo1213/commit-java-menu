@@ -50,7 +50,7 @@ public class InputValidator {
 
     public List<String> convertToHateMenus(String hateMenus) {
         if (hateMenus.isEmpty()) {
-            return List.of(hateMenus);
+            return List.of();
         }
         return Stream.of(hateMenus.split(COMMA_SEPARATOR))
                 .collect(Collectors.toList());
